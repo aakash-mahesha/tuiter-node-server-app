@@ -6,17 +6,17 @@ import cors from 'cors';
 import session from "express-session";
 import AuthController from './users/auth-controller.js';
 import "dotenv/config";
+import mongoose from 'mongoose';
 
+const CONNECTION_STRING = process.env.DB_CONNECTION_STRING
+console.log(CONNECTION_STRING)
+mongoose.connect(CONNECTION_STRING)
 const app = express();
 app.use(cors({
-    // {
+  
     credentials: true,
     origin: [process.env.FRONTEND_URL,process.env.FRONTEND_DEPLOY_URL]
-    // },
-//     {
-//     credentials: true,
-//     origin: process.env.FRONTEND_DEPLOY_URL,
-// },
+
 }));
 
 const sessionOptions = {
